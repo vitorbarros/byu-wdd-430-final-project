@@ -1,0 +1,20 @@
+{
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "reset_password": "Reset password",
+  "submit": "Submit",
+  "dont_have_an_account_signup": "Don't have an account? Signup",
+  "signup": "Signup",
+  "have_an_account_already_signing": "Have an account already? Signing",
+  "name": "Full Name",
+  "welcome": "Welcome to Our Exciting New Platform!",
+  "welcome_text": "Join us and explore a world of possibilities with your very own account. Here's what you can look forward to:",
+  "easy_signup": "\uD83C\uDF1F Easy Sign-Up & Secure Access",
+  "personal_account": "Create your personal account effortlessly.",
+  "enjoy": "Enjoy safe and secure logins every time.",
+  "dashboard": "\uD83D\uDDA5\uFE0F Your Personal Dashboard",
+  "step_into": "Step into your unique dashboard after logging in.",
+  "find_everything": "Find everything you love, tailored just for you.",
+  "navigate": "Navigate with ease using handy menus and sidebars."
+}

@@ -1,0 +1,68 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  name          String?
+  role          UserRole       @default(USER)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  posts         Post[]
+  orders        Order[]
+  notifications Notification[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orders      Order[]
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  productId  Int
+  product    Product  @relation(fields: [productId], references: [id])
+  quantity   Int
+  totalPrice Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
