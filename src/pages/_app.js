@@ -5,11 +5,17 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {ThemeProvider} from "@mui/material";
 import theme from "@/theme";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 export default function App({ Component, pageProps }) {
+  const client = new QueryClient();
+
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <QueryClientProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
+

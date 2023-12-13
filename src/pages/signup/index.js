@@ -1,13 +1,25 @@
 import React from "react";
 import {Button, Grid, Link, TextField, Typography} from "@mui/material";
-import i18n from "@/i18n";
+import i18n from "../../i18n";
 import {PageTitle} from "@/components/pageTitle";
 import {Card} from "@/components/card";
 import {FormControl} from "@/pages/signup/styles";
 import {Bg, ContentContainer, P} from "@/pages/signup/styles";
 import {white} from "@/theme";
+import {FormikProvider} from "formik";
+import useSignup from "@/hooks/signup";
 
-const login = () => {
+const Login = () => {
+  const {
+    formik,
+    name,
+    email,
+    password,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useSignup();
+
   return (
     <Grid container flex justifyContent="center" alignItems="center">
       <Grid item xl={6} md={6} xs={12} sm={12}>
@@ -16,41 +28,52 @@ const login = () => {
             {i18n.t('signup')}
           </PageTitle>
           <Link href="/login">{i18n.t('have_an_account_already_signing')}</Link>
-          <Grid container>
-            <Grid item xl={12} md={12} xs={12} sm={12}>
-              <FormControl fullWidth>
-                <TextField
-                  id="name"
-                  type="text"
-                  fullWidth
-                  label={i18n.t('name')}
-                />
-              </FormControl>
+          <FormikProvider value={formik}>
+            <Grid container>
+              <Grid item xl={12} md={12} xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    id="name"
+                    type="text"
+                    fullWidth
+                    label={i18n.t('name')}
+                    value={name}
+                    onBlur={handleBlur('name')}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xl={6} md={6} xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    id="password"
+                    type="password"
+                    fullWidth
+                    label={i18n.t('password')}
+                    value={password}
+                    onBlur={handleBlur('password')}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xl={6} md={6} xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    id="email"
+                    type="email"
+                    fullWidth
+                    label={i18n.t('email')}
+                    value={email}
+                    onBlur={handleBlur('email')}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </Grid>
+              <Button variant="contained" fullWidth onClick={() => handleSubmit()}>
+                {i18n.t('submit')}
+              </Button>
             </Grid>
-            <Grid item xl={6} md={6} xs={12} sm={12}>
-              <FormControl fullWidth>
-                <TextField
-                  id="password"
-                  type="password"
-                  fullWidth
-                  label={i18n.t('password')}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xl={6} md={6} xs={12} sm={12}>
-              <FormControl fullWidth>
-                <TextField
-                  id="email"
-                  type="email"
-                  fullWidth
-                  label={i18n.t('email')}
-                />
-              </FormControl>
-            </Grid>
-            <Button variant="contained" fullWidth>
-              {i18n.t('submit')}
-            </Button>
-          </Grid>
+          </FormikProvider>
         </Card>
       </Grid>
       <Grid item xl={6} md={6} xs={12} sm={12}>
@@ -96,4 +119,4 @@ const login = () => {
   )
 };
 
-export default login;
+export default Login;

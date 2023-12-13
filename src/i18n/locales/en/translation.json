@@ -16,5 +16,10 @@
   "dashboard": "\uD83D\uDDA5\uFE0F Your Personal Dashboard",
   "step_into": "Step into your unique dashboard after logging in.",
   "find_everything": "Find everything you love, tailored just for you.",
-  "navigate": "Navigate with ease using handy menus and sidebars."
+  "navigate": "Navigate with ease using handy menus and sidebars.",
+  "name_required": "Name is required",
+  "email_required": "Email is required",
+  "invalid_email": "Invalid email address",
+  "password_required": "Password is required",
+  "password_6_characters": "Password must have at least 6 characters"
 }
